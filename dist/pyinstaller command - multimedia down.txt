@@ -1,0 +1,1 @@
+pyinstaller -F multimedia_down_gui.py
