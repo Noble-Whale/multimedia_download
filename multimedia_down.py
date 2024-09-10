@@ -47,13 +47,14 @@ def image_down(URL):
     else:
         print(response.status_code)
 
+def main(target = "", URL = ""):
+    if(target == "" and URL == ""):
+        target = input("target : ")
+        URL = input("URL : ")
 
-target = input("target : ")
-URL = input("URL : ")
-
-if target == "image":
-    image_down(URL)
-elif target == "movie":
-    movie_down(URL)
-elif target == "music":
-    movie_down(URL,target)
+    if target == "image":
+        image_down(URL)
+    elif target == "movie":
+        movie_down(URL)
+    elif target == "music":
+        movie_down(URL,target)
