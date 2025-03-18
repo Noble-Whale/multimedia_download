@@ -1,9 +1,10 @@
+import os
 import re
+import traceback
 
 ##-------------------------------youtube, movie start
-import pytube #old
 import pytubefix
-from moviepy.editor import *
+from moviepy import *
 ##-------------------------------youtube, movie end
 
 ##-------------------------------image start
@@ -17,10 +18,13 @@ options.add_argument('headless')
 ##-------------------------------image end
 
 def movie_down(URL, target='movie'):
-    yt = pytube.YouTube  # old
-    yt2 = pytubefix.YouTube
+    yt = pytubefix.YouTube
 
-    video = yt2(URL).streams.get_highest_resolution()
+    video_content = yt(URL, "WEB") # nodejs 필요, python interpreter 3.13 ↑
+
+    print(video_content.title)
+
+    video = video_content.streams.get_highest_resolution()
 
     yt_filename = re.sub("(/|\.mp4)", "", video.default_filename) # ①파일 이름에 /가 들어가면 경로로 인식해서 moviepy가 오류를 떨궈서 문자 대체
                                                                             # ②확장자(.mp4)를 빼서 순수한 파일명만 추출
@@ -58,9 +62,12 @@ def main(target = "", URL = ""):
         target = input("target : ")
         URL = input("URL : ")
 
-    if target == "image":
-        image_down(URL)
-    elif target == "movie":
-        movie_down(URL)
-    elif target == "music":
-        movie_down(URL,target)
+    try:
+        if target == "image":
+            image_down(URL)
+        elif target == "movie":
+            movie_down(URL)
+        elif target == "music":
+            movie_down(URL,target)
+    except:
+        traceback.print_exc()
