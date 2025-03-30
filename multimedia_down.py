@@ -3,7 +3,7 @@ import re
 import traceback
 
 ##-------------------------------youtube, movie start
-import pytubefix
+import pytubefix # youtube에서 로직 및 파라미터를 계속 패치하는 것 같은데, 안되면 pip install pytubefix --upgrade로 최신버전 받아볼 것
 from moviepy import *
 ##-------------------------------youtube, movie end
 
@@ -11,7 +11,6 @@ from moviepy import *
 import requests
 from selenium import webdriver
 from urllib.request import urlretrieve
-from urllib.request import urlopen
 from bs4 import BeautifulSoup
 options = webdriver.ChromeOptions()
 options.add_argument('headless')
