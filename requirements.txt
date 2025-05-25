@@ -1,0 +1,5 @@
+tk
+yt_dlp
+requests
+selenium
+beautifulsoup4
